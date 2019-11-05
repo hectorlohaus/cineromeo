@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: brown;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+body {
+    background-color: rgb(38, 43, 43,0.8);
+}
+ol, ul{
+    list-style: none;
+}
+header{
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+}
+nav img{
+    width: 60px;height: 60px;
+    float: right;
+    margin-right: 50px;
+}
+ nav li{
+    float: left;
+    list-style: none;
+    display: block;
+    background-color: blueviolet;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px;
+}
+nav li a{
+    text-decoration: none;
+}
+nav {
+    background-color: blueviolet;
+    width: 100%;
+    overflow: auto;
+}
+nav li:hover{
+    list-style: none;
+    background-color: aqua;
+    text-transform: uppercase;
+    transition: 0.8s;
+}
+.central{
+    margin-top: 50px;
+    text-align: center;
+}
+section{
+    padding-top: 80px;
+}
+.pelicula {
+    background-color: red;
+    width: 250px;float: left;border-radius: 2em;
+    padding: 25px;text-align: center;margin: 15px;
+}
+.pelicula img{
+    width: 150px;
+    height: 200px;
+}
+.pelicula img:hover{
+    filter: brightness(0.6);
+}
+.pelicula p{
+    text-align: justify;
+}
+.pelicula img:hover ~ div{
+    background-color: black;padding: 6px;border-radius: 2em;color: white;
+}
+section h2{
+    text-align: center;margin-bottom: 20px;
+    color: bisque;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.formulario{
+    text-align: justify;color: bisque;font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+/* -------- modificacion de los estilos dep. del dispositivo */
+/* media query*/
+@media (max-width:600px){
+    header nav img{
+        display: none;
+    }
+    .pelicula{
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 10px;
+        background-color: rgb(0, 255, 98);
+        width: 120px;
+        float: left;
+        margin: 5px;
+        border-radius: 10px 0px 10px 0px;
+    }
+    .pelicula img{
+        width: 100px;
+        height: 150px;
+    }
+}

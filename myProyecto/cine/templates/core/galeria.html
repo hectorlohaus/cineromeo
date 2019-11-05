@@ -1,0 +1,66 @@
+    
+    {% extends "core/base.html" %}
+
+    {% block titulo %}
+        Galeria de Peliculas - Cine Romeo
+    {% endblock titulo %}
+
+    {% load static %}
+
+    {% block contenido %}
+    
+        <!-- sector del menu -->
+        <h2>Listado Cartelera</h2>
+
+        <div class="pelicula">
+            <h3>Toy Story</h3>
+            <img src="{% static 'img/peli1.jpg' %}">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, praesentium. Doloribus adipisci aperiam architecto?
+                Id a dignissimos sint, reiciendis explicabo, nobis ipsum, ut quos pariatur illum eligendi repellat officia
+                dolor.
+            </p>
+            <div>Ver Pelicula</div>
+        </div>
+        <div class="pelicula">
+            <h3>Advenger End Game</h3>
+            <img src="{% static 'img/peli2.jpg' %}">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, praesentium. Doloribus adipisci aperiam architecto?
+                Id a dignissimos sint, reiciendis explicabo, nobis ipsum, ut quos pariatur illum eligendi repellat officia
+                dolor.
+            </p>
+            <div>Ver Pelicula</div>
+        </div>
+        <div class="pelicula">
+            <h3>El Planeta de los Simios</h3>
+            <img src="{% static 'img/peli3.jpg' %}">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quos, praesentium. Doloribus adipisci aperiam architecto?
+                Id a dignissimos sint, reiciendis explicabo, nobis ipsum, ut quos pariatur illum eligendi repellat officia
+                dolor.
+            </p>
+            <div>Ver Pelicula</div>
+        </div>
+
+        {% for p in peliculas %}                
+        <div class="pelicula">
+            <h3>{{p.name}}</h3>
+            <img src="{{p.imagen.url}}" width="100" height="100">
+            <p>
+                {{p.descripcion}}
+            </p>
+            <div>Eliminar Pelicula</div>
+            <a href="{% url 'ELIMINAR' p.name %}">Eliminar Pelicula</a>
+            <div>Agregar a Carro</div>
+            <a href="{% url 'AGREGAR_CARRO' p.name %}">Agregar Pelicula a Carro</a>
+        </div>
+        {% endfor %}
+
+        <hr>
+        <!-- recorrer el arreglo o coleccion -->
+        {% for l in lista %}
+            <h1>{{l}}</h1><br>
+        {% endfor %}
+
+
+    {% endblock contenido %}
+    
+    

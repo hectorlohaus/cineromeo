@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{% static 'css/estilos_romeo.css' %}" type="text/css" rel="stylesheet">
+    <title>Formulario de Registro - Cine Romeo</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <!-- comentario OL (lista ordenada) UL (lista sin orden) LI (indice de lista) -->
+            <ol>
+                <li>
+                    <a href="{% url 'HOME' %}"> Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'GALE' %}"> Galeria</a>
+                </li>
+                <li>
+                    <a href="{% url 'FORMU' %}"> Formulario</a>
+                </li>
+                <li>
+                    <a href="{% url 'FORMU2' %}">Formulario DOS</a>
+                </li>
+                <li>
+                    <a href="{% url 'QUIEN' %}"> Quienes Somos</a>
+                </li>
+            </ol>
+        </nav>
+    </header>
+    <section>
+        <h2>Registre sus datos para descuentos</h2>
+        <script src="{% static 'js/cliente.js' %}"></script>
+        <script>
+            var arreglo = new Array();
+            var x = 0;
+            function grabar() {
+                if (typeof (Storage) == 'undefined') {
+                    alert('no puedo almacenar en localstorage');
+                } else {
+                    alert('puedo almacenar en localstorage');
+                }
+                var rut = document.getElementById("txtRut").value;
+                var nombre = document.getElementById("txtNombre").value;
+                var edad = document.getElementById("txtEdad").value;
+                var pass = document.getElementById("txtPass").value;
+                cli = new cliente();
+                cli.setRut(rut); cli.setNombre(nombre); cli.setEdad(edad);
+                cli.setContrasena(pass);
+                arreglo[x] = JSON.stringify(cli);
+                x++;
+                localStorage.setItem('registros', arreglo);
+                alert("Cliente Almacenado:" + cli.getNombre());
+            }
+            function listar() {
+                var todo = "";
+                for (index = 0; index < arreglo.length; index++) {
+                    var datos = arreglo[index]; todo = todo + datos.imprimir() + "<br>";
+                }
+                document.getElementById("respuesta").innerHTML = todo;
+            }
+            function borrar() { }
+        </script>
+        <div class="formulario">
+            <form method="POST" action="" id="formulario"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <center>
+                <table border="1">
+                    <tr>
+                        <td colspan="2" style="text-align: center;font-size: 20px;">Registro</td>
+                    </tr>
+                    <tr>
+                        <td>Titulo:</td>
+                        <td>
+                            <input type="text" name="txtTitulo" id="txtTitulo"> </td>
+                    </tr>
+                    <tr>
+                        <td>Duracion:</td>
+                        <td>
+                            <input type="number" name="txtDuracion" id="txtDuracion"> </td>
+                    </tr>
+                    <tr>
+                        <td>Precio:</td>
+                        <td>
+                            <input type="number" name="txtPrecio" id="txtPrecio"> </td>
+                    </tr>
+                    <tr>
+                        <td>Descripcion:</td>
+                        <td>
+                           <textarea name="txtDescripcion"></textarea>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Categoria:</td>
+                        <td>
+                            <select name="cboCategoria">
+                                {% for cat in categorias %}
+                                    <option value="{{cat.name}}">{{cat.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Seleccione Imagen</td>
+                        <td>
+                            <input type="file" name="imagen">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Grabar">
+                        </td>
+                    </tr>
+                </table>
+            </center>
+        </form>
+        </div>
+        <div id="respuesta">{{msg}}</div>
+    </section>
+</body>
+
+</html>

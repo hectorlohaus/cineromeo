@@ -1,0 +1,34 @@
+{% extends "core/base.html" %}
+
+{% block titulo %}
+     Login de Cine Romeo
+{% endblock titulo %}    
+
+
+{% block contenido %}
+
+     <h1>Login de Acceso a Cine Romeo</h1>
+     <form action="" method="POST">
+         {% csrf_token %}
+        <table border="1">
+            <tr>
+                <td colspan="2">Formulario de Acceso</td>                
+            </tr>
+            <tr>
+                <td>User:</td>
+                <td>   <input type="text" name="txtUsuario">  </td>
+            </tr>
+            <tr>
+                <td>Pass:</td>
+                <td>  <input type="password" name="txtPass">  </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Acceder">
+                </td>
+            </tr>
+        </table>
+
+     </form>
+    
+{% endblock contenido %}

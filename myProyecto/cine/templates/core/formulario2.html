@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{% static 'css/estilos_romeo.css' %}" type="text/css" rel="stylesheet">
+    <title>Formulario de Registro - Cine Romeo</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <!-- comentario OL (lista ordenada) UL (lista sin orden) LI (indice de lista) -->
+            <ol>
+                <li>
+                    <a href="{% url 'HOME' %}"> Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'GALE' %}"> Galeria</a>
+                </li>
+                <li>
+                    <a href="{% url 'FORMU' %}"> Formulario</a>
+                </li>
+                <li>
+                    <a href="{% url 'FORMU2' %}">Formulario DOS</a>
+                </li>
+                <li>
+                    <a href="{% url 'QUIEN' %}"> Quienes Somos</a>
+                </li>
+            </ol>
+        </nav>
+    </header>
+    <section>
+        <h2>Registre sus datos para descuentos</h2>
+        <script src="{% static 'js/cliente.js' %}"></script>
+        <script>
+            var arreglo = new Array();
+            var x = 0;
+            function listar() {
+                var todo = "";
+                var datos = localStorage.getItem('registros');//texto
+                datos = datos.replace('},{', '};{');//separacion JSON
+                arreglo = datos.split(';');//separa cada Registro por ;
+                for (index = 0; index < arreglo.length; index++) {
+                    var dat = arreglo[index];
+                    todo = todo + dat + "<br>";
+                    var element = JSON.parse(dat);
+                    alert('Nombre es:' + element.nombre);
+                }
+                document.getElementById("respuesta").innerHTML = todo;
+            }
+            function borrar() { }
+        </script>
+        <button onclick="listar()">Listar desde LocalStorage</button>
+        <center>
+            <div id="respuesta"></div>
+        </center>
+    </section>
+</body>
+
+</html>
